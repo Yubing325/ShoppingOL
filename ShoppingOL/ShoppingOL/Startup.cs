@@ -32,6 +32,7 @@ namespace ShoppingOL
 
             app.UseDefaultFiles();
             app.UseStaticFiles();
+           
         }
     }
 }
