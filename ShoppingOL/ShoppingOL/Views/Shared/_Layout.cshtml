@@ -1,0 +1,22 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title> Welcome to @ViewBag.Title</title>
+</head>
+<body>
+    <section>
+        <h2>@ViewBag.Title</h2>
+        @RenderBody()
+    </section>
+    
+    <footer>
+        copyright 2019
+    </footer>
+    <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+    <script src="js/index.js"></script>
+</body>
+</html>
