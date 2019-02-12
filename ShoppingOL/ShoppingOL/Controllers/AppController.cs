@@ -14,5 +14,15 @@ namespace ShoppingOL.Controllers
             //throw new InvalidOperationException("sdfs");
             return View();
         }
+        [HttpGet("About")]
+        public IActionResult About()
+        {
+            return View();
+        }
+        [HttpGet("Contact")]
+        public IActionResult Contact()
+        {
+            return View();
+        }
     }
 }
