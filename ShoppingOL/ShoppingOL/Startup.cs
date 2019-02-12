@@ -21,24 +21,17 @@ namespace ShoppingOL
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IHostingEnvironment env)
         {
-            //if (env.IsDevelopment())
-            //{
-            //    app.UseDeveloperExceptionPage();
-            //}
-
-            //app.Run(async (context) =>
-            //{
-            //    await context.Response.WriteAsync("Hello World!");
-            //});
-
-            //app.UseDefaultFiles();
+            if(env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+           
             app.UseStaticFiles();
 
             app.UseMvc(cfg => {
                 cfg.MapRoute("Default","{controller}/{action}/{id?}", 
                     new { controller ="App" ,Action = "Index"});
             });
-
         }
     }
 }

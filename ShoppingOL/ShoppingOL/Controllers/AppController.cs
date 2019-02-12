@@ -11,6 +11,7 @@ namespace ShoppingOL.Controllers
     {
         public IActionResult Index()
         {
+            //throw new InvalidOperationException("sdfs");
             return View();
         }
     }
