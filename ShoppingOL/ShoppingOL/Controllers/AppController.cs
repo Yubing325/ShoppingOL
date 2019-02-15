@@ -21,7 +21,9 @@ namespace ShoppingOL.Controllers
         [HttpGet("Contact")]
         public IActionResult Contact()
         {
+          
             return View();
+
         }
         [HttpPost("Contact")]
         public IActionResult Contact(object model)
