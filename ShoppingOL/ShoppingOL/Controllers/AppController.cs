@@ -11,7 +11,6 @@ namespace ShoppingOL.Controllers
     {
         public IActionResult Index()
         {
-            //throw new InvalidOperationException("sdfs");
             return View();
         }
         [HttpGet("About")]
@@ -21,6 +20,11 @@ namespace ShoppingOL.Controllers
         }
         [HttpGet("Contact")]
         public IActionResult Contact()
+        {
+            return View();
+        }
+        [HttpPost("Contact")]
+        public IActionResult Contact(object model)
         {
             return View();
         }
