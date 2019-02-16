@@ -27,8 +27,18 @@ namespace ShoppingOL.Controllers
 
         }
         [HttpPost("Contact")]
-        public IActionResult Contact(object model)
+        public IActionResult Contact(ContactViewModel model)
         {
+            if (ModelState.IsValid)
+            {
+
+            }
+            else
+            {
+
+            }
+
+
             return View();
         }
     }

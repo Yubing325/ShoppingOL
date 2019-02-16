@@ -31,6 +31,7 @@ namespace ShoppingOL
             }
            
             app.UseStaticFiles();
+            app.UseNodeModules(env);
 
             app.UseMvc(cfg => {
                 cfg.MapRoute("Default","{controller}/{action}/{id?}", 

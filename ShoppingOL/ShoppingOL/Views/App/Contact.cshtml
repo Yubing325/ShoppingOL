@@ -1,21 +1,28 @@
 ﻿@model ContactViewModel
+@section Scripts{ 
+
+}
 
 <h2>@ViewBag.Title</h2>
-<form  method="post">
-    <div asp-validation-summary="All"></div>
+<form method="post">
+    <div asp-validation-summary="ModelOnly"></div>
     <label asp-for="Name">Your Name</label>
     <br />
     <input asp-for="Name" type="text" value="" />
+    <span asp-validation-for="Name"></span>
     <br />
     <label asp-for="Email">Email:</label>
     <input type="email" name="email" asp-for="Email" value="" />
+    <span asp-validation-for="Email"></span>
     <br />
     <label asp-for="Subject">Subject:</label>
     <input type="text" asp-for="Subject" value="" />
+    <span asp-validation-for="Subject"></span>
     <br />
     <label asp-for="Message">Message:</label>
     <br />
     <textarea rows="4" asp-for="Message"></textarea>
+    <span asp-validation-for="Message"></span>
     <br />
     <input type="submit" name="submit" value="Send Message" />
 </form>
