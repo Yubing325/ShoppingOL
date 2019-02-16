@@ -22,20 +22,13 @@ namespace ShoppingOL.Controllers
         [HttpGet("Contact")]
         public IActionResult Contact()
         {
+          
             return View();
+
         }
         [HttpPost("Contact")]
-        public IActionResult Contact(ContactViewModel model)
+        public IActionResult Contact(object model)
         {
-            if (ModelState.IsValid)
-            {
-
-            }
-            else
-            {
-
-            }
-
             return View();
         }
     }
