@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShoppingOL.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,7 +27,7 @@ namespace ShoppingOL.Controllers
 
         }
         [HttpPost("Contact")]
-        public IActionResult Contact(object model)
+        public IActionResult Contact(ContactViewModel mode)
         {
             return View();
         }
