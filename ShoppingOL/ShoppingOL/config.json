@@ -1,0 +1,5 @@
+{
+  "ConnectionStrings": {
+    "ShoppingOLConnectionString": "server=(localdb)\\ProjectsV13;Database=ShoppingOL;Integrated Security = true;MultipleActiveResultSets=true;"
+  }
+}
