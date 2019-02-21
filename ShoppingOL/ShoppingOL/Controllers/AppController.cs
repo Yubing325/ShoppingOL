@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using ShoppingOL.Data;
 using ShoppingOL.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -10,6 +11,13 @@ namespace ShoppingOL.Controllers
 {
     public class AppController : Controller
     {
+        private readonly CustomDBContext _context;
+
+        public AppController(CustomDBContext context)
+        {
+            this._context = context;
+        }
+
         public IActionResult Index()
         {
             return View();
@@ -40,6 +48,11 @@ namespace ShoppingOL.Controllers
 
 
             return View();
+        }
+
+        public IActionResult Shop() {
+            var result = _context.Products.ToList();
+            return View(result);
         }
     }
 }

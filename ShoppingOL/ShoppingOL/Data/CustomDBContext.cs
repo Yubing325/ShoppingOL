@@ -18,15 +18,20 @@ namespace ShoppingOL.Data
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-            modelBuilder.Entity<Product>()
-                .Property(p => p.Price)
-                .HasColumnType("decimal(18,2)");
+            modelBuilder.Entity<Order>()
+                .HasData(new Order()
+                {
+                    Id=1,
+                    OrderDate = DateTime.UtcNow,
+                    OrderNumber = "12345"
+                });
+               
         }
 
         public DbSet<Product> Products { get; set; }
         public DbSet<Order> Orders { get; set; }
 
-        
+       
 
     }
 }
