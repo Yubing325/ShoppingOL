@@ -11,17 +11,16 @@ namespace ShoppingOL.Controllers
 {
     public class AppController : Controller
     {
-        private readonly CustomDBContext _context;
+        private readonly IShoppingRepository repository;
 
-        public AppController(CustomDBContext context)
+        public AppController(IShoppingRepository repository)
         {
-            this._context = context;
+            this.repository = repository;
         }
 
         public IActionResult Index()
         {
-            var result = _context.Products.ToList();
-            return View();
+           return View();
         }
         [HttpGet("About")]
         public IActionResult About()
@@ -52,7 +51,7 @@ namespace ShoppingOL.Controllers
         }
 
         public IActionResult Shop() {
-            var result = _context.Products.ToList();
+            var result = repository.GetAllProducts();
             return View(result);
         }
     }

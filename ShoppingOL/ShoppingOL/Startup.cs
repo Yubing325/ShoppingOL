@@ -31,6 +31,9 @@ namespace ShoppingOL
 
             services.AddTransient<ShoppingolSeeder>();
 
+            //Register the repository
+            services.AddScoped<IShoppingRepository, ShoppingRepository>();
+
             services.AddMvc();
         }
 
