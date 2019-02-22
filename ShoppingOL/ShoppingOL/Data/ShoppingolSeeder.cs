@@ -32,6 +32,23 @@ namespace ShoppingOL.Data
                 var products = JsonConvert.DeserializeObject<IEnumerable<Product>>(json);
                 ctx.Products.AddRange(products);
 
+                var order = ctx.Orders.Where(o => o.Id == 1).FirstOrDefault();
+                if (order != null)
+                {
+                    order.Items = new List<OrderItem>()
+                    {
+                        new OrderItem()
+                        {
+                            Product = products.First(),
+                            Quantity = 5,
+                            UnitPrice = products.First().Price
+
+                        }
+                    };
+                }
+
+
+
                 ctx.SaveChanges();
             }
 
