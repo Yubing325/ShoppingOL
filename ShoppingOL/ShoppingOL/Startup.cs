@@ -28,6 +28,9 @@ namespace ShoppingOL
             services.AddDbContext<CustomDBContext>(cfg => {
                 cfg.UseSqlServer(_config.GetConnectionString("ShoppingOLConnectionString"));
             });
+
+            services.AddTransient<ShoppingolSeeder>();
+
             services.AddMvc();
         }
 

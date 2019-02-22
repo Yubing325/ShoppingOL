@@ -7,6 +7,8 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using ShoppingOL.Data;
+using Microsoft.Extensions.DependencyInjection;
 
 namespace ShoppingOL
 {
@@ -14,13 +16,28 @@ namespace ShoppingOL
     {
         public static void Main(string[] args)
         {
-            CreateWebHostBuilder(args).Build().Run();
+            var host = BuildWebHost(args);
+            //Seedig happens during startup the application
+            RunSeeding(host);
+
+            host.Run();
         }
 
-        public static IWebHostBuilder CreateWebHostBuilder(string[] args) =>
+        private static void RunSeeding(IWebHost host)
+        {
+            var scopeFactory = host.Services.GetService<IServiceScopeFactory>();
+            using (var scope = scopeFactory.CreateScope())
+            {
+                var seeder = scope.ServiceProvider.GetService<ShoppingolSeeder>();
+                seeder.Seed();
+            }            
+        }
+
+        public static IWebHost BuildWebHost(string[] args) =>
             WebHost.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration(SetupConfiguration)
-                .UseStartup<Startup>();
+                .UseStartup<Startup>()
+                .Build();
 
         private static void SetupConfiguration(WebHostBuilderContext context, IConfigurationBuilder builder)
         {
