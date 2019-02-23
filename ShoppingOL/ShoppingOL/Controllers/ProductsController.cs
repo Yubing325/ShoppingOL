@@ -11,6 +11,8 @@ using System.Threading.Tasks;
 namespace ShoppingOL.Controllers
 {
     [Route("api/[Controller]")]
+    [ApiController]
+    [Produces("application/json")]
     public class ProductsController: Controller
     {
         private readonly IShoppingRepository shoppingRepo;
@@ -22,6 +24,7 @@ namespace ShoppingOL.Controllers
             this.logger = logger;
         }
         [HttpGet]
+        [ProducesResponseType(200)]
         public IActionResult Get()
         {
             try
