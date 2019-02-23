@@ -1,6 +1,7 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using ShoppingOL.Data;
+using ShoppingOL.Data.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,6 +10,7 @@ using System.Threading.Tasks;
 
 namespace ShoppingOL.Controllers
 {
+    [Route("api/[Controller]")]
     public class ProductsController: Controller
     {
         private readonly IShoppingRepository shoppingRepo;
@@ -19,7 +21,19 @@ namespace ShoppingOL.Controllers
             this.shoppingRepo = shoppingRepo;
             this.logger = logger;
         }
+        [HttpGet]
+        public IEnumerable<Product> Get()
+        {
+            try
+            {
+                return shoppingRepo.GetAllProducts();
 
-
+            }
+            catch (Exception ex)
+            {
+                logger.LogError("Failed to get products,{0}", ex);
+                return null;
+            }
+        }
     }
 }
