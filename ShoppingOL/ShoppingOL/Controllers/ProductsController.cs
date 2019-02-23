@@ -22,17 +22,18 @@ namespace ShoppingOL.Controllers
             this.logger = logger;
         }
         [HttpGet]
-        public IEnumerable<Product> Get()
+        public IActionResult Get()
         {
             try
             {
-                return shoppingRepo.GetAllProducts();
+                //Return 200
+                return Ok(shoppingRepo.GetAllProducts());
 
             }
             catch (Exception ex)
             {
                 logger.LogError("Failed to get products,{0}", ex);
-                return null;
+                return BadRequest("Sorry! Server failed to get products, please try again later.");
             }
         }
     }
