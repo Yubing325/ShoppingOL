@@ -20,12 +20,65 @@ namespace ShoppingOL.Data
             this.logger = logger;
         }
 
+        public void AddEntity(object model)
+        {
+             ctx.Add(model);
+        }
+
+        public void AddOrder(Order newOrder)
+        {
+            foreach (var item in newOrder.Items)
+            {
+                item.Product = ctx.Products.Find(item.Product.Id);
+            }
+
+            AddEntity(newOrder);
+        }
+
         public IEnumerable<Order> GetAllOrders()
         {
             return ctx.Orders
                 .Include(o=>o.Items)
                 .ThenInclude(i => i.Product)
                 .ToList();
+        }
+
+        public IEnumerable<Order> GetAllOrders(bool includeItems)
+        {
+            if (includeItems)
+            {
+
+                return ctx.Orders
+                           .Include(o => o.Items)
+                           .ThenInclude(i => i.Product)
+                           .ToList();
+
+            }
+            else
+            {
+                return ctx.Orders
+                           .ToList();
+            }
+        }
+
+        public IEnumerable<Order> GetAllOrdersByUser(string username, bool includeItems)
+        {
+            if (includeItems)
+            {
+
+                return ctx.Orders
+                           .Where(o => o.User.UserName == username)
+                           .Include(o => o.Items)
+                           .ThenInclude(i => i.Product)
+                           .ToList();
+
+            }
+            else
+            {
+                return ctx.Orders
+                           .Where(o => o.User.UserName == username)
+                           .ToList();
+            }
         }
 
         public IEnumerable<Product> GetAllProducts()
@@ -55,6 +108,11 @@ namespace ShoppingOL.Data
 
         }
 
+        public Order GetOrderById(string username, int id)
+        {
+            throw new NotImplementedException();
+        }
+
         public IEnumerable<Product> GetProductsByCategory(string category)
         {
             return ctx.Products
@@ -65,6 +123,11 @@ namespace ShoppingOL.Data
         public bool SaveAll()
         {
             return ctx.SaveChanges() > 0;
+        }
+
+        object IShoppingRepository.GetOrderById(int id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

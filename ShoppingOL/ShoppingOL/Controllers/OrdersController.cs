@@ -1,12 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ShoppingOL.Data;
 using ShoppingOL.Data.Entities;
 using Microsoft.Extensions.Logging;
+using Microsoft.AspNetCore.Identity;
 
 namespace ShoppingOL.Controllers
 {
@@ -14,7 +11,8 @@ namespace ShoppingOL.Controllers
     public class OrdersController : Controller
     {
         private readonly IShoppingRepository repository;
-        private readonly ILogger<OrdersController> logger;
+        private readonly ILogger<OrdersController> logger;       
+        private readonly UserManager<StoreUser> _userManager;
 
         public OrdersController(IShoppingRepository repository, ILogger<OrdersController> logger)
         {
@@ -27,7 +25,7 @@ namespace ShoppingOL.Controllers
         {
             try
             {
-                return Ok(repository.GetAllOrders());
+                return Ok();
             }
             catch (Exception ex)
             {
