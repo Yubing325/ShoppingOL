@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Logging;
 using ShoppingOL.Data.Entities;
 using System;
 using System.Collections.Generic;
@@ -19,6 +20,14 @@ namespace ShoppingOL.Data
             this.logger = logger;
         }
 
+        public IEnumerable<Order> GetAllOrders()
+        {
+            return ctx.Orders
+                .Include(o=>o.Items)
+                .ThenInclude(i => i.Product)
+                .ToList();
+        }
+
         public IEnumerable<Product> GetAllProducts()
         {
             try
@@ -34,6 +43,16 @@ namespace ShoppingOL.Data
                 logger.LogError("Failed to get all products: {0}", ex);
                 return null;
             }
+        }
+
+        public Order GetOrderById(int id)
+        {
+            return ctx.Orders
+                    .Include(o => o.Items)
+                    .ThenInclude(i => i.Product)
+                    .Where(o => o.Id == id)
+                    .FirstOrDefault();
+
         }
 
         public IEnumerable<Product> GetProductsByCategory(string category)
