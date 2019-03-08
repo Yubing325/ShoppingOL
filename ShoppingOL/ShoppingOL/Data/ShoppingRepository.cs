@@ -108,11 +108,6 @@ namespace ShoppingOL.Data
 
         }
 
-        public Order GetOrderById(string username, int id)
-        {
-            throw new NotImplementedException();
-        }
-
         public IEnumerable<Product> GetProductsByCategory(string category)
         {
             return ctx.Products
@@ -125,9 +120,13 @@ namespace ShoppingOL.Data
             return ctx.SaveChanges() > 0;
         }
 
-        object IShoppingRepository.GetOrderById(int id)
+        public Order GetOrderById(string username, int id)
         {
-            throw new NotImplementedException();
+            return ctx.Orders
+                       .Include(o => o.Items)
+                       .ThenInclude(i => i.Product)
+                       .Where(o => o.Id == id && o.User.UserName == username)
+                       .FirstOrDefault();
         }
     }
 }

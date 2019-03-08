@@ -15,6 +15,6 @@ namespace ShoppingOL.Data
 
     bool SaveAll();
     void AddEntity(object model);
-    Order GetOrderById(int id);
+   
     }
 }
