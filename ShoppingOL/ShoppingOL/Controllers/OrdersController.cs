@@ -4,6 +4,8 @@ using ShoppingOL.Data;
 using ShoppingOL.Data.Entities;
 using Microsoft.Extensions.Logging;
 using Microsoft.AspNetCore.Identity;
+using AutoMapper;
+using ShoppingOL.ViewModels;
 
 namespace ShoppingOL.Controllers
 {
@@ -11,13 +13,15 @@ namespace ShoppingOL.Controllers
     public class OrdersController : Controller
     {
         private readonly IShoppingRepository repository;
-        private readonly ILogger<OrdersController> logger;       
-        private readonly UserManager<StoreUser> _userManager;
+        private readonly ILogger<OrdersController> logger;
+        private readonly IMapper mapper;
+        
 
-        public OrdersController(IShoppingRepository repository, ILogger<OrdersController> logger)
+        public OrdersController(IShoppingRepository repository, ILogger<OrdersController> logger, IMapper mapper)
         {
             this.repository = repository;
             this.logger = logger;
+            this.mapper = mapper;
         }
 
         [HttpGet]
@@ -41,7 +45,7 @@ namespace ShoppingOL.Controllers
             try
             {
                 var order = repository.GetOrderById(id);
-                if (order != null) return Ok(order);
+                if (order != null) return Ok(mapper.Map<Order,OrderViewModel>(order));
                 else return NotFound();
                 
             }
