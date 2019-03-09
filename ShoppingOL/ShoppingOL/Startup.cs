@@ -11,6 +11,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
+using ShoppingOL.Services;
 using ShoppingOL.Data;
 
 namespace ShoppingOL
@@ -28,6 +29,7 @@ namespace ShoppingOL
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
+
             services.AddDbContext<CustomDBContext>(cfg => {
                 cfg.UseSqlServer(_config.GetConnectionString("ShoppingOLConnectionString"));
             });
@@ -40,6 +42,7 @@ namespace ShoppingOL
             //Register the repository
             services.AddScoped<IShoppingRepository, ShoppingRepository>();
 
+            services.AddTransient<IMailService,NullMailService>();
             services.AddMvc()
               .AddJsonOptions(opt => opt.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore)
               .SetCompatibilityVersion(CompatibilityVersion.Version_2_1);

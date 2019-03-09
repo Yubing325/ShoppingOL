@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using ShoppingOL.Data;
+using ShoppingOL.Services;
 using ShoppingOL.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -12,10 +13,12 @@ namespace ShoppingOL.Controllers
     public class AppController : Controller
     {
         private readonly IShoppingRepository repository;
+        private readonly IMailService mailService;
 
-        public AppController(IShoppingRepository repository)
+        public AppController(IShoppingRepository repository, IMailService mailService)
         {
             this.repository = repository;
+            this.mailService = mailService;
         }
 
         public IActionResult Index()
@@ -39,7 +42,9 @@ namespace ShoppingOL.Controllers
         {
             if (ModelState.IsValid)
             {
-
+                mailService.SendMessage("s@xxx.com", model.Subject, $"From: {model.Name} - {model.Email}, Message: {model.Message}");
+                ViewBag.UserMessage = "Mail Sent!";
+                ModelState.Clear();
             }
             else
             {
