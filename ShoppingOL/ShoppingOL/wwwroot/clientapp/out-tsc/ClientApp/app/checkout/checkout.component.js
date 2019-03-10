@@ -27,14 +27,13 @@ var Checkout = /** @class */ (function () {
             }
         }, function (err) { return _this.errorMessage = "Failed to save order"; });
     };
-    var _a;
     Checkout = __decorate([
         core_1.Component({
             selector: "checkout",
             templateUrl: "checkout.component.html",
             styleUrls: ['checkout.component.css']
         }),
-        __metadata("design:paramtypes", [dataService_1.DataService, typeof (_a = typeof router_1.Router !== "undefined" && router_1.Router) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [dataService_1.DataService, router_1.Router])
     ], Checkout);
     return Checkout;
 }());

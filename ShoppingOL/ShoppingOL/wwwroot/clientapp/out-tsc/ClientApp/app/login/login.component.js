@@ -37,13 +37,12 @@ var Login = /** @class */ (function () {
             }
         }, function (err) { return _this.errorMessage = "Failed to login"; });
     };
-    var _a;
     Login = __decorate([
         core_1.Component({
             selector: "login",
             templateUrl: "login.component.html"
         }),
-        __metadata("design:paramtypes", [dataService_1.DataService, typeof (_a = typeof router_1.Router !== "undefined" && router_1.Router) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [dataService_1.DataService, router_1.Router])
     ], Login);
     return Login;
 }());

@@ -27,14 +27,13 @@ var Cart = /** @class */ (function () {
             this.router.navigate(["checkout"]);
         }
     };
-    var _a;
     Cart = __decorate([
         core_1.Component({
             selector: "the-cart",
             templateUrl: "cart.component.html",
             styleUrls: []
         }),
-        __metadata("design:paramtypes", [dataService_1.DataService, typeof (_a = typeof router_1.Router !== "undefined" && router_1.Router) === "function" ? _a : Object])
+        __metadata("design:paramtypes", [dataService_1.DataService, router_1.Router])
     ], Cart);
     return Cart;
 }());
