@@ -87,5 +87,5 @@ ShoppingOL is an online shopping application built by ASP.Net Core 2.1 and Angul
 +---● Program.cs
 +---● Startup.cs
 ```
-## Demo
-![demo](/ShoppingOL_ScreenShot)
+# Demo
+![demo](/ShoppingOL_ScreenShot.jpg)
