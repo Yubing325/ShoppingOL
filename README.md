@@ -1,12 +1,27 @@
 # ShoppingOL
 ShoppingOL is an online shopping application built by ASP.Net Core 2.1 and Angular + Bootstrap.
-# Features
+## Features
 
 * Front-end & Back-end Fully Seperated.
 * Orders Management & Shopping Cart & Admin Identity 
 * Front-end framework: Angular 7 ; Back-end: Asp.NET Core 2.1 MVC
 
-# Front-end Structure:
+## Tech-stack
+1. Server-side:
+- Json
+- ASP.NET Core 2.1 MVC
+- Entity Framework Code First
+- Repository Pattern
+- C#
+- SQL Server
+- Nuget
+
+2. Front-end:
+- HTML5 
+- CSS3
+- Angular 7
+
+## Front-end Structure:
 ```
 ● src
 +---● app
@@ -29,7 +44,7 @@ ShoppingOL is an online shopping application built by ASP.Net Core 2.1 and Angul
 |   |--app.module.ts
 |   |--app.component.ts|.html
 ```
-# Back-end Structure
+## Back-end Structure
 ```
 ● CardRegisterApp.API
 +---● Controllers
@@ -72,5 +87,5 @@ ShoppingOL is an online shopping application built by ASP.Net Core 2.1 and Angul
 +---● Program.cs
 +---● Startup.cs
 ```
-# Demo
+## Demo
 ![demo](/ShoppingOL_ScreenShot)
